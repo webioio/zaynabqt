@@ -3,548 +3,826 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Zaynii</title>
+<title>Our Universe — Me &amp; Zaiiny</title>
+
+<!--
+  ══════════════════════════════════════════════════════════════════
+  HOW TO CUSTOMIZE THIS WEBSITE (read me first!)
+  ══════════════════════════════════════════════════════════════════
+  1. PHOTOS  → your real photos are already wired in under /.
+     To add more, drop new files into the  folder and add a
+     new .photo-frame block (copy an existing one as a template).
+  2. MUSIC   → put an mp3 named "song.mp3" inside the "music" folder
+     next to this file, so the note-button at bottom right works.
+  3. TEXT/LETTERS → edit the words directly. Replace [Humayun].
+  4. CONFIG  → search "CONFIG START" near the bottom <script> — set
+     your anniversary date, secret-section password, reasons list,
+     and hidden star memories there.
+  ══════════════════════════════════════════════════════════════════
+-->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+
 <style>
   :root{
-    --sky1:#274472;
-    --sky2:#4d7cb5;
-    --sky3:#a9d3f5;
-    --paper:#fff8fb;
-    --paper-dark:#ffe2ee;
-    --ink:#4a3a63;
-    --ink-soft:#7c6a95;
-    --rose:#e0617f;
-    --rose-deep:#b23e5c;
-    --gold:#f3d98b;
-    --box-blue:#5a9bd8;
-    --box-blue-deep:#3a6fa8;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;height:100%;}
-  body{
-    background:linear-gradient(180deg, var(--sky1) 0%, var(--sky2) 55%, var(--sky3) 100%);
-    font-family:'Cormorant Garamond','EB Garamond',serif;
-    color:var(--ink);
-    height:100vh; width:100vw;
-    overflow:hidden;
-    display:flex; align-items:center; justify-content:center;
-    position:relative;
+    --midnight:#0B1026;
+    --deep-purple:#1C1638;
+    --warm-white:#F8F8F8;
+    --soft-pink:#F7C6D9;
+    --gold:#F4D35E;
+    --rain:#161227;
+    --rain2:#0d0b1a;
+    --sunrise1:#3a2452;
+    --sunrise2:#c96f56;
+    --sunrise3:#f4d35e;
+    --sky-a: var(--midnight);
+    --sky-b: var(--deep-purple);
+    --transition-slow: 2.2s ease;
   }
 
-  /* clouds */
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Poppins', sans-serif;
+    background:var(--midnight);
+    color:var(--warm-white);
+    overflow-x:hidden;
+    min-height:100vh;
+  }
+  h1,h2,h3,.script{
+    font-family:'Great Vibes', cursive;
+    font-weight:400;
+    letter-spacing:0.5px;
+  }
+  .letter-text, .letter blockquote{
+    font-family:'Caveat', cursive;
+  }
+  ::selection{ background:var(--soft-pink); color:var(--midnight); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  /* ============ SKY / BACKGROUND ============ */
+  .sky{
+    position:fixed; inset:0; z-index:-3;
+    background: radial-gradient(ellipse at 20% 15%, var(--sky-b) 0%, var(--sky-a) 55%, #05060f 100%);
+    transition: background var(--transition-slow);
+    overflow:hidden;
+  }
+  .sky.mood-rain{ --sky-a: var(--rain2); --sky-b: var(--rain); }
+  .sky.mood-sunrise{
+    background: linear-gradient(180deg, var(--sunrise1) 0%, var(--sunrise2) 55%, var(--sunrise3) 100%);
+  }
+  .sky.mood-forever{
+    background: radial-gradient(ellipse at 50% 30%, #2a2158 0%, var(--midnight) 60%, #05060f 100%);
+  }
+
+  .stars{ position:absolute; inset:0; }
+  .star{
+    position:absolute; background:var(--warm-white); border-radius:50%;
+    animation:twinkle 4s ease-in-out infinite;
+    opacity:0.6;
+  }
+  @keyframes twinkle{
+    0%,100%{ opacity:0.15; transform:scale(0.8); }
+    50%{ opacity:1; transform:scale(1.15); }
+  }
+
   .cloud{
-    position:fixed; background:#fff; opacity:0.75; border-radius:50%;
-    filter:blur(1px);
-    animation:drift linear infinite;
+    position:absolute; border-radius:50%;
+    background: radial-gradient(ellipse, rgba(248,248,248,0.06), transparent 70%);
+    filter:blur(6px);
+    animation:drift 60s linear infinite;
   }
   @keyframes drift{
-    0%{ transform:translateX(-15vw); }
-    100%{ transform:translateX(115vw); }
+    0%{ transform:translateX(-10vw); }
+    100%{ transform:translateX(110vw); }
   }
 
-  /* sparkles */
-  .sparkle{
-    position:fixed; width:5px; height:5px; border-radius:50%;
-    background:#fff; opacity:0.8;
-    animation:twinkle 3s ease-in-out infinite;
-  }
-  @keyframes twinkle{ 0%,100%{opacity:0.2;} 50%{opacity:0.9;} }
-
-  /* moon glow */
   .moon{
-    position:fixed; top:6%; right:10%;
-    width:100px; height:100px; border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, #fffdf3, #f3ecc9 55%, #e2d7a8 85%);
-    box-shadow:0 0 40px 16px rgba(255,250,230,0.5), 0 0 100px 34px rgba(200,224,255,0.28);
-    animation:moonGlow 6s ease-in-out infinite;
-    z-index:0;
+    position:absolute; top:8%; right:12%;
+    width:90px; height:90px; border-radius:50%;
+    background: radial-gradient(circle at 35% 35%, #fffef2, var(--gold) 70%);
+    box-shadow: 0 0 60px 20px rgba(244,211,94,0.35), 0 0 120px 60px rgba(244,211,94,0.12);
+    transition: all var(--transition-slow);
   }
-  .moon::before, .moon::after{
-    content:''; position:absolute; border-radius:50%;
-    background:rgba(200,190,150,0.35);
-  }
-  .moon::before{ width:16px; height:16px; top:22px; left:20px; }
-  .moon::after{ width:10px; height:10px; top:52px; left:52px; }
-  @keyframes moonGlow{ 0%,100%{ transform:scale(1); opacity:0.95; } 50%{ transform:scale(1.05); opacity:1; } }
-
-  /* falling hearts */
-  .falling-heart{
-    position:fixed; top:-30px; font-family:'Great Vibes',cursive, serif;
-    color:var(--rose); opacity:0.85; pointer-events:none;
-    animation:fallDown linear infinite;
-    z-index:1;
-  }
-  @keyframes fallDown{
-    0%{ transform:translateY(-5vh) translateX(0) rotate(0deg); opacity:0; }
-    8%{ opacity:0.9; }
-    90%{ opacity:0.7; }
-    100%{ transform:translateY(108vh) translateX(var(--drift,20px)) rotate(25deg); opacity:0; }
+  .sky.mood-sunrise .moon{ opacity:0; transform:translateY(-40px); }
+  .sky.mood-forever .moon{
+    width:220px; height:220px; top:12%; right:50%; transform:translateX(50%);
+    box-shadow: 0 0 140px 50px rgba(244,211,94,0.4), 0 0 240px 100px rgba(244,211,94,0.15);
   }
 
-  .stage{position:relative; width:100%; height:100%; display:flex; align-items:center; justify-content:center; perspective:1600px;}
-
-  /* ---- gift box (letter comes out of this) ---- */
-  .box{
-    position:relative; width:170px; height:150px; cursor:pointer;
-    z-index:5;
-    animation:idle 3s ease-in-out infinite;
+  .shooting-star{
+    position:absolute; width:2px; height:2px; background:var(--warm-white);
+    border-radius:50%; top:-5%;
+    box-shadow: 0 0 6px 2px rgba(255,255,255,0.8);
+    animation: shoot 1.6s linear forwards;
   }
-  @keyframes idle{
-    0%,100%{ transform:translateY(0) rotate(-1deg); }
-    50%{ transform:translateY(-8px) rotate(1deg); }
-  }
-  .box-body{
-    position:absolute; bottom:0; left:0; right:0; height:96px;
-    background:linear-gradient(160deg,#8fc9ff,var(--box-blue) 55%,var(--box-blue-deep));
-    border:1px solid var(--box-blue-deep);
-    border-radius:6px;
-    box-shadow:0 16px 30px rgba(30,60,100,0.35), inset 0 0 0 1px rgba(255,255,255,0.25);
-  }
-  .box-lid{
-    position:absolute; top:26px; left:-8px; right:-8px; height:34px;
-    background:linear-gradient(160deg,#b6e0ff,#79b6e8);
-    border:1px solid var(--box-blue-deep);
-    border-radius:5px;
-    box-shadow:0 6px 12px rgba(30,60,100,0.28);
-    transform-origin:top center; transform:rotateX(0deg);
-    transition:transform .65s cubic-bezier(.6,.05,.3,1), opacity .5s ease;
-    backface-visibility:hidden; z-index:4;
-  }
-  .ribbon-v{
-    position:absolute; top:0; bottom:0; left:50%; width:18px; transform:translateX(-50%);
-    background:linear-gradient(180deg,#ffaec4,var(--rose));
-    z-index:2;
-  }
-  .ribbon-h{
-    position:absolute; left:0; right:0; top:14px; height:16px;
-    background:linear-gradient(90deg,#ffaec4,var(--rose));
-    z-index:5;
-  }
-  .bow{
-    position:absolute; top:-16px; left:50%; transform:translateX(-50%);
-    width:56px; height:34px; z-index:6;
-  }
-  .hint-box{
-    position:absolute; bottom:-30px; left:50%; transform:translateX(-50%);
-    font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--paper);
-    white-space:nowrap; text-shadow:0 1px 3px rgba(0,0,0,0.25);
-  }
-  .box.opening .box-lid{ transform:rotateX(-125deg) translateY(-4px); opacity:0; }
-  .box.opening .box-body{ transition:transform .5s ease .2s, opacity .5s ease .2s; transform:scale(0.9) translateY(6px); opacity:0; }
-  .box.opening .ribbon-v, .box.opening .ribbon-h, .box.opening .bow, .box.opening .hint-box{
-    transition:opacity .4s ease .1s; opacity:0;
-  }
-  .box.opening{ animation:none; }
-
-  /* ---- scroll (letter, rises out of the box, then unrolls open) ---- */
-  .scroll-wrap{
-    position:absolute; display:flex; flex-direction:column; align-items:center;
-    width:min(88vw, 560px); z-index:3;
-    opacity:0; transform:translateY(50px) scale(0.2);
-    transition:opacity .55s ease, transform .75s cubic-bezier(.34,1.56,.64,1);
-    pointer-events:none;
-  }
-  .scroll-wrap.visible{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
-
-  .rod{
-    width:100%; height:16px; border-radius:10px;
-    background:linear-gradient(180deg,#ffb3ca,var(--rose) 45%,var(--rose-deep));
-    box-shadow:0 3px 8px rgba(178,62,92,0.3);
-    position:relative; z-index:3; flex-shrink:0;
-  }
-  .rod::before, .rod::after{
-    content:''; position:absolute; top:50%; width:22px; height:22px; border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, #ffd3e2, var(--rose-deep));
+  .shooting-star::before{
+    content:''; position:absolute; top:50%; right:0; width:120px; height:1px;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,0.9));
     transform:translateY(-50%);
-    box-shadow:0 2px 5px rgba(0,0,0,0.25);
   }
-  .rod::before{ left:-14px; }
-  .rod::after{ right:-14px; }
-
-  .scroll-outer{
-    width:100%; overflow:hidden; height:0; max-height:70vh;
-    transition:height .95s cubic-bezier(.4,0,.2,1);
-    background:
-      repeating-linear-gradient(0deg, rgba(178,62,92,0.02) 0px, transparent 2px, transparent 26px),
-      linear-gradient(160deg,#fff5f8,#ffe0ea);
-    box-shadow:0 16px 34px rgba(178,62,92,0.22);
-    position:relative;
-  }
-  .scroll-outer.scrollable{ overflow-y:auto; }
-  .scroll-inner{ padding:44px 40px 34px; text-align:center; }
-  .curl-shadow{
-    position:absolute; left:0; right:0; bottom:0; height:30px;
-    background:linear-gradient(180deg, transparent, rgba(178,62,92,0.35));
-    pointer-events:none; transition:opacity .5s ease; opacity:1;
-  }
-  .scroll-outer.done .curl-shadow{ opacity:0.12; }
-
-  h1,h2{ font-family:'Great Vibes', cursive; font-weight:400; color:var(--rose-deep); margin:0 0 16px; }
-  h1{ font-size:clamp(34px,6vw,52px); }
-  p{ font-size:clamp(16px,2vw,19px); line-height:1.8; color:var(--ink); max-width:460px; margin:0 auto 14px; }
-  p:last-of-type{ margin-bottom:0; }
-  .eyebrow{
-    letter-spacing:3px; text-transform:uppercase; font-size:11px;
-    color:var(--ink-soft); margin-bottom:12px;
-  }
-  .signature{ font-family:'Great Vibes',cursive; font-size:34px; color:var(--rose-deep); margin-top:18px; }
-
-  .next-btn{
-    margin-top:26px;
-    font-family:'EB Garamond',serif; font-size:17px; letter-spacing:0.5px;
-    padding:12px 28px; border-radius:30px; cursor:pointer;
-    background:var(--rose); color:#fff5f8; border:1px solid var(--rose-deep);
-    box-shadow:0 6px 16px rgba(178,62,92,0.3);
-    transition:transform .2s ease, opacity .3s ease;
-  }
-  .next-btn:hover{ transform:scale(1.05); }
-  .page-counter{
-    margin-top:10px; font-size:12px; letter-spacing:2px; color:var(--ink-soft); text-transform:uppercase;
+  @keyframes shoot{
+    0%{ transform: translate(0,0) rotate(35deg); opacity:1; }
+    100%{ transform: translate(-500px, 500px) rotate(35deg); opacity:0; }
   }
 
-  /* birds */
-  .bird{ position:fixed; top:12%; left:-60px; width:34px; height:20px; z-index:2; animation:flyAcross 17s linear infinite; opacity:0.9; }
-  .bird svg{ width:100%; height:100%; display:block; }
-  .bird .wing{ transform-origin:50% 50%; animation:flap 0.45s ease-in-out infinite alternate; }
-  .bird.b2{ top:22%; animation-duration:20s; animation-delay:3s; }
-  .bird.b3{ top:8%; animation-duration:23s; animation-delay:7s; }
-  .bird.b4{ top:30%; animation-duration:15s; animation-delay:10s; }
-  @keyframes flyAcross{
-    0%{ transform:translate(0,0); }
-    50%{ transform:translate(60vw, -6vh); }
-    100%{ transform:translate(130vw, 4vh); }
+  .rain-layer{ position:absolute; inset:0; opacity:0; transition:opacity 1.8s ease; pointer-events:none; }
+  .sky.mood-rain .rain-layer{ opacity:1; }
+  .raindrop{
+    position:absolute; width:1px; height:60px; top:-10%;
+    background:linear-gradient(180deg, transparent, rgba(200,210,255,0.35));
+    animation: fall linear infinite;
   }
-  @keyframes flap{
-    0%{ transform:scaleY(1) rotate(0deg); }
-    100%{ transform:scaleY(0.5) rotate(-12deg); }
+  @keyframes fall{
+    0%{ transform:translateY(0); }
+    100%{ transform:translateY(110vh); }
   }
 
-  /* cat */
-  .cat{ position:fixed; bottom:0; right:16px; width:88px; height:92px; z-index:5; transform-origin:bottom center; animation:catSway 4.5s ease-in-out infinite; }
-  .cat svg{ width:100%; height:100%; display:block; }
-  @keyframes catSway{ 0%,100%{ transform:rotate(0deg); } 50%{ transform:rotate(1.5deg); } }
-  .cat .tail{ transform-origin:90% 90%; animation:tailSwish 2.6s ease-in-out infinite; }
-  @keyframes tailSwish{ 0%,100%{ transform:rotate(0deg); } 50%{ transform:rotate(-14deg); } }
-  .cat .eyes{ animation:blink 4.2s ease-in-out infinite; transform-origin:center; }
-  @keyframes blink{ 0%,92%,100%{ transform:scaleY(1); } 95%{ transform:scaleY(0.1); } }
-
-  @media (max-width:560px){
-    .cat{ width:64px; height:68px; right:6px; }
-    .bird{ width:26px; height:16px; }
-    .scroll-inner{ padding:34px 24px 26px; }
+  /* hidden clickable memory stars */
+  .memory-star{
+    position:absolute; width:14px; height:14px; cursor:pointer; z-index:2;
+    background:radial-gradient(circle, #fff, var(--gold) 60%, transparent 70%);
+    border-radius:50%; border:none;
+    box-shadow:0 0 10px 3px rgba(244,211,94,0.6);
+    animation: twinkle 3s ease-in-out infinite;
   }
+  .memory-star:hover{ transform:scale(1.6); }
 
+  /* ============ TOP UI ============ */
   .music-toggle{
-    position:fixed; left:20px; bottom:20px; z-index:60;
-    display:flex; align-items:center; gap:8px;
-    font-size:12px; letter-spacing:1px; color:var(--ink-soft);
-    background:rgba(255,255,255,0.65); border:1px solid var(--paper-dark);
-    padding:8px 14px; border-radius:20px; cursor:pointer;
-    backdrop-filter:blur(2px);
+    position:fixed; bottom:22px; right:22px; z-index:50;
+    width:52px; height:52px; border-radius:50%; border:1px solid rgba(248,248,248,0.25);
+    background:rgba(28,22,56,0.6); backdrop-filter:blur(8px);
+    color:var(--warm-white); font-size:20px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
-  .music-toggle .dotpulse{ width:7px; height:7px; border-radius:50%; background:var(--rose); animation:twinkle 1.6s ease-in-out infinite; }
+  .music-toggle:hover{ box-shadow:0 0 20px rgba(244,211,94,0.4); transform:scale(1.05); }
+  .music-toggle.playing{ box-shadow:0 0 20px rgba(247,198,217,0.5); }
+
+  .letter-fab{
+    position:fixed; bottom:22px; left:22px; z-index:50;
+    padding:12px 18px; border-radius:30px; border:1px solid rgba(248,248,248,0.25);
+    background:rgba(28,22,56,0.6); backdrop-filter:blur(8px);
+    color:var(--warm-white); font-size:14px; cursor:pointer;
+    display:flex; align-items:center; gap:8px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .letter-fab:hover{ box-shadow:0 0 20px rgba(244,211,94,0.35); transform:translateY(-2px); }
+
+  /* ============ LAYOUT ============ */
+  main{ position:relative; z-index:1; }
+  section{ position:relative; padding:14vh 6vw; max-width:1100px; margin:0 auto; }
+
+  .eyebrow{
+    font-family:'Poppins',sans-serif; font-size:12px; letter-spacing:4px; text-transform:uppercase;
+    color:var(--gold); opacity:0.85; margin-bottom:10px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:'⭐'; font-size:12px; }
+
+  h2.chapter-title{ font-size:clamp(2.6rem, 6vw, 4.2rem); color:var(--warm-white); margin-bottom:6px; }
+  .chapter-sub{ font-size:14px; letter-spacing:2px; text-transform:uppercase; opacity:0.6; margin-bottom:40px; }
+
+  .reveal{
+    opacity:0; transform:translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* glass cards */
+  .glass{
+    background:rgba(248,248,248,0.06);
+    border:1px solid rgba(248,248,248,0.12);
+    border-radius:18px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 8px 32px rgba(0,0,0,0.35);
+  }
+  .glow{ box-shadow:0 0 40px rgba(244,211,94,0.18), 0 8px 32px rgba(0,0,0,0.35); }
+
+  /* photo grid */
+  .photo-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:22px; margin:36px 0; }
+  .photo-frame{
+    position:relative; aspect-ratio:4/5; border-radius:16px; overflow:hidden;
+    background:linear-gradient(160deg, rgba(247,198,217,0.12), rgba(244,211,94,0.08));
+    border:1px solid rgba(248,248,248,0.15);
+    transition: transform 0.5s ease;
+    animation: float 6s ease-in-out infinite;
+  }
+  .photo-frame:nth-child(2n){ animation-delay:1.2s; }
+  .photo-frame:nth-child(3n){ animation-delay:2.4s; }
+  .photo-frame:hover{ transform:translateY(-8px) scale(1.02); }
+  @keyframes float{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-6px); } }
+  .photo-frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .photo-placeholder{
+    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:8px; color:rgba(248,248,248,0.55); font-size:13px; text-align:center; padding:10px;
+  }
+  .photo-placeholder .ic{ font-size:26px; }
+  .photo-caption{
+    position:absolute; bottom:0; left:0; right:0; padding:10px 12px;
+    font-size:12px; background:linear-gradient(0deg, rgba(11,16,38,0.85), transparent);
+  }
+
+  /* letters */
+  .letter{
+    padding:40px clamp(20px,4vw,50px); margin:30px 0; position:relative;
+  }
+  .letter .letter-text{
+    font-size:clamp(1.3rem, 2.4vw, 1.7rem); line-height:1.7; color:var(--warm-white);
+    white-space:pre-wrap;
+  }
+  .letter .sign{ margin-top:18px; font-family:'Caveat',cursive; font-size:1.5rem; color:var(--gold); }
+  .letter .quill{ position:absolute; top:-14px; left:30px; font-size:22px; }
+
+  /* buttons */
+  .btn{
+    display:inline-block; padding:12px 26px; border-radius:30px; cursor:pointer;
+    border:1px solid var(--gold); color:var(--gold); background:transparent;
+    font-family:'Poppins',sans-serif; font-size:13px; letter-spacing:1px; text-transform:uppercase;
+    transition: all 0.3s ease;
+  }
+  .btn:hover{ background:var(--gold); color:var(--midnight); box-shadow:0 0 25px rgba(244,211,94,0.5); }
+
+  /* ============ INTRO ============ */
+  .intro{
+    position:fixed; inset:0; z-index:100; background:var(--midnight);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+    transition: opacity 1.2s ease, visibility 1.2s ease;
+    padding:20px;
+  }
+  .intro.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
+  .intro h1{ font-size:clamp(3rem,10vw,6rem); color:var(--warm-white); text-shadow:0 0 40px rgba(244,211,94,0.4); }
+  .intro p{ opacity:0.7; margin:14px 0 34px; letter-spacing:2px; font-size:13px; text-transform:uppercase; }
+
+  /* ============ HERO ============ */
+  .hero{ min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding-top:0; }
+  .hero h1{ font-size:clamp(3.2rem,11vw,7rem); text-shadow:0 0 50px rgba(244,211,94,0.35); }
+  .hero .tag{ font-size:clamp(1.1rem,2.5vw,1.5rem); font-family:'Caveat',cursive; color:var(--soft-pink); margin-top:16px; }
+  .scroll-cue{ margin-top:60px; opacity:0.6; font-size:12px; letter-spacing:3px; text-transform:uppercase; animation:bob 2s ease-in-out infinite; }
+  @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(10px);} }
+
+  /* ============ CONSTELLATION PROGRESS (desktop) ============ */
+  .constellation{
+    position:fixed; right:26px; top:50%; transform:translateY(-50%); z-index:30;
+    display:flex; flex-direction:column; align-items:center; gap:0;
+  }
+  @media (max-width:900px){ .constellation{ display:none; } }
+  .const-node{ display:flex; flex-direction:column; align-items:center; }
+  .const-dot{
+    width:9px; height:9px; border-radius:50%; background:rgba(248,248,248,0.25);
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+  }
+  .const-dot.active{ background:var(--gold); box-shadow:0 0 12px 3px rgba(244,211,94,0.7); }
+  .const-line{ width:1px; height:34px; background:rgba(248,248,248,0.18); }
+  .const-line.active{ background:var(--gold); box-shadow:0 0 6px rgba(244,211,94,0.5); }
+
+  /* ============ REASONS ============ */
+  .reasons-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; margin-top:30px; }
+  .reason-card{
+    padding:22px; font-family:'Caveat',cursive; font-size:1.3rem; line-height:1.4;
+    cursor:default; transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .reason-card:hover{ transform:translateY(-6px); box-shadow:0 0 30px rgba(247,198,217,0.25); }
+  .reason-num{ font-family:'Poppins'; font-size:11px; color:var(--gold); letter-spacing:2px; display:block; margin-bottom:10px; }
+
+  /* ============ COUNTDOWN ============ */
+  .countdown{ display:flex; gap:22px; flex-wrap:wrap; justify-content:center; margin-top:30px; }
+  .cd-box{ padding:20px 26px; text-align:center; min-width:90px; }
+  .cd-num{ font-size:2.2rem; color:var(--gold); font-weight:600; }
+  .cd-label{ font-size:11px; letter-spacing:2px; text-transform:uppercase; opacity:0.7; margin-top:4px; }
+
+  /* ============ SECRET SECTION ============ */
+  .secret-gate{ padding:40px; text-align:center; }
+  .secret-gate input{
+    background:rgba(248,248,248,0.08); border:1px solid rgba(248,248,248,0.25); border-radius:30px;
+    padding:12px 20px; color:var(--warm-white); font-family:'Poppins'; text-align:center; margin:16px 0;
+    width:min(280px,80%);
+  }
+  .secret-content{ display:none; }
+  .secret-content.unlocked{ display:block; }
+
+  /* ============ MODAL ============ */
+  .modal-bg{
+    position:fixed; inset:0; background:rgba(5,6,15,0.75); backdrop-filter:blur(6px);
+    display:flex; align-items:center; justify-content:center; z-index:200;
+    opacity:0; visibility:hidden; transition:opacity 0.4s ease, visibility 0.4s ease; padding:20px;
+  }
+  .modal-bg.show{ opacity:1; visibility:visible; }
+  .modal-box{ max-width:560px; width:100%; padding:44px 36px; position:relative; }
+  .modal-close{ position:absolute; top:14px; right:18px; cursor:pointer; font-size:22px; opacity:0.6; background:none; border:none; color:var(--warm-white); }
+  .modal-close:hover{ opacity:1; }
+
+  footer{ text-align:center; padding:10vh 6vw 8vh; opacity:0.6; font-size:13px; }
+  footer .script{ font-size:2rem; color:var(--gold); display:block; margin-bottom:10px; opacity:1;}
+
+  @media (max-width:600px){ section{ padding:10vh 6vw; } }
 </style>
 </head>
-<body>
+<body data-mood="night">
 
-<!-- moon glow -->
-<div class="moon"></div>
-
-<!-- clouds -->
-<div class="cloud" style="width:120px;height:44px;top:8%;animation-duration:38s;"></div>
-<div class="cloud" style="width:90px;height:34px;top:16%;animation-duration:46s;animation-delay:6s;"></div>
-<div class="cloud" style="width:150px;height:52px;top:5%;animation-duration:55s;animation-delay:14s;"></div>
-<div class="cloud" style="width:80px;height:30px;top:24%;animation-duration:32s;animation-delay:2s;"></div>
-<div class="cloud" style="width:110px;height:40px;top:12%;animation-duration:42s;animation-delay:20s;"></div>
-<div class="cloud" style="width:70px;height:26px;top:30%;animation-duration:28s;animation-delay:9s;"></div>
-
-<div id="sparkles"></div>
-<div id="hearts"></div>
-
-<!-- birds -->
-<div class="bird b1"><svg viewBox="0 0 60 34" fill="none">
-  <path class="wing" d="M30 20 C20 6,4 6,0 14 C10 14,20 16,30 20 Z" fill="var(--rose)"/>
-  <path class="wing" d="M30 20 C40 6,56 6,60 14 C50 14,40 16,30 20 Z" fill="var(--rose)"/>
-</svg></div>
-<div class="bird b2"><svg viewBox="0 0 60 34" fill="none">
-  <path class="wing" d="M30 20 C20 6,4 6,0 14 C10 14,20 16,30 20 Z" fill="#ffffff"/>
-  <path class="wing" d="M30 20 C40 6,56 6,60 14 C50 14,40 16,30 20 Z" fill="#ffffff"/>
-</svg></div>
-<div class="bird b3"><svg viewBox="0 0 60 34" fill="none">
-  <path class="wing" d="M30 20 C20 6,4 6,0 14 C10 14,20 16,30 20 Z" fill="var(--gold)"/>
-  <path class="wing" d="M30 20 C40 6,56 6,60 14 C50 14,40 16,30 20 Z" fill="var(--gold)"/>
-</svg></div>
-<div class="bird b4"><svg viewBox="0 0 60 34" fill="none">
-  <path class="wing" d="M30 20 C20 6,4 6,0 14 C10 14,20 16,30 20 Z" fill="var(--rose-deep)"/>
-  <path class="wing" d="M30 20 C40 6,56 6,60 14 C50 14,40 16,30 20 Z" fill="var(--rose-deep)"/>
-</svg></div>
-
-<!-- cat -->
-<div class="cat">
-  <svg viewBox="0 0 100 100" fill="none">
-    <path class="tail" d="M80 85 C100 80,98 55,82 55" stroke="var(--ink-soft)" stroke-width="6" stroke-linecap="round" fill="none"/>
-    <ellipse cx="46" cy="70" rx="34" ry="26" fill="#f7d6df"/>
-    <circle cx="42" cy="38" r="24" fill="#f7d6df"/>
-    <path d="M22 22 L28 4 L38 24 Z" fill="#f7d6df"/>
-    <path d="M62 22 L58 4 L48 24 Z" fill="#f7d6df"/>
-    <path d="M25 20 L29 10 L35 22 Z" fill="var(--rose)"/>
-    <path d="M59 20 L55 10 L49 22 Z" fill="var(--rose)"/>
-    <g class="eyes">
-      <ellipse cx="34" cy="38" rx="3.4" ry="5" fill="#6b3a4a"/>
-      <ellipse cx="52" cy="38" rx="3.4" ry="5" fill="#6b3a4a"/>
-    </g>
-    <path d="M42 46 L38 50 L46 50 Z" fill="var(--rose-deep)"/>
-    <path d="M42 50 C40 54,44 54,42 50" stroke="#6b3a4a" stroke-width="1.6" fill="none"/>
-    <ellipse cx="20" cy="46" rx="20" ry="6" fill="#ff8fac" transform="rotate(-8 20 46)" opacity="0.5"/>
-    <path d="M60 20 L66 12 L70 22 L64 24 Z" fill="var(--rose-deep)"/>
-  </svg>
+<!-- ============ SKY BACKGROUND ============ -->
+<div class="sky" id="sky">
+  <div class="stars" id="stars"></div>
+  <div class="cloud" style="width:340px;height:120px;top:14%;left:-20%;"></div>
+  <div class="cloud" style="width:260px;height:100px;top:32%;left:-30%;animation-duration:80s;animation-delay:-20s;"></div>
+  <div class="moon" id="moon"></div>
+  <div class="rain-layer" id="rainLayer"></div>
 </div>
 
-<div class="stage">
-  <div class="box" id="packet" onclick="openLetter()">
-    <div class="box-body"></div>
-    <div class="ribbon-v"></div>
-    <div class="box-lid">
-      <div class="ribbon-h"></div>
-    </div>
-    <svg class="bow" viewBox="0 0 56 34" fill="none">
-      <ellipse cx="14" cy="17" rx="14" ry="11" fill="var(--rose)" transform="rotate(-18 14 17)"/>
-      <ellipse cx="42" cy="17" rx="14" ry="11" fill="var(--rose)" transform="rotate(18 42 17)"/>
-      <circle cx="28" cy="17" r="7" fill="var(--rose-deep)"/>
-    </svg>
-    <div class="hint-box">tap to open</div>
-  </div>
+<div class="constellation" id="constellation"></div>
 
-  <div class="scroll-wrap" id="scrollWrap">
-    <div class="rod"></div>
-    <div class="scroll-outer" id="scrollOuter">
-      <div class="scroll-inner" id="scrollInner"></div>
-      <div class="curl-shadow"></div>
-    </div>
-    <div class="rod"></div>
+<!-- ============ INTRO ============ -->
+<div class="intro" id="intro">
+  <h1 class="script">Our Universe</h1>
+  <p>a story told in stars, for Zaiiny</p>
+  <button class="btn" id="enterBtn">✨ Begin Our Story</button>
+</div>
+
+<button class="music-toggle" id="musicToggle" title="Play music">♪</button>
+<audio id="bgMusic" loop src="12.mp3"></audio>
+
+<button class="letter-fab" id="randomLetterBtn">💌 Open a random letter</button>
+
+<!-- ============ MODAL: random letter ============ -->
+<div class="modal-bg" id="letterModal">
+  <div class="modal-box glass glow">
+    <button class="modal-close" id="closeLetterModal">✕</button>
+    <div class="eyebrow">a letter, just because</div>
+    <p class="letter-text" id="randomLetterText"></p>
+    <p class="sign">— [Humayun]</p>
   </div>
 </div>
 
-<div class="music-toggle" id="musicToggle">
-  <span class="dotpulse"></span>
-  <span id="musicLabel">play music</span>
+<!-- ============ MODAL: memory star ============ -->
+<div class="modal-bg" id="memoryModal">
+  <div class="modal-box glass glow">
+    <button class="modal-close" id="closeMemoryModal">✕</button>
+    <div class="eyebrow">a hidden memory</div>
+    <p class="letter-text" id="memoryText"></p>
+  </div>
 </div>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="eyebrow" style="justify-content:center;">our universe</div>
+    <h1 class="reveal in">Every star is a memory.</h1>
+    <p class="tag reveal in">Every constellation, a chapter. Every photo, a moment that changed us.</p>
+    <div class="scroll-cue">scroll to begin ↓</div>
+  </section>
+
+  <!-- ============ CHAPTER 1 — THE BEGINNING ============ -->
+  <section class="chapter" data-mood="night" data-const="0">
+    <div class="eyebrow reveal">Chapter One</div>
+    <h2 class="chapter-title reveal">The Beginning</h2>
+    <p class="chapter-sub reveal">two strangers, one quiet start</p>
+
+    <div class="photo-grid reveal">
+      <div class="photo-frame glass">
+        <div class="photo-placeholder"><span class="ic">🤍</span>Our first photo together</div>
+        <img src="1.jpeg" alt="Our first photo together">
+        <div class="photo-caption">the very first one</div>
+      </div>
+    </div>
+
+    <div class="letter glass reveal">
+      <div class="quill">🖋️</div>
+      <p class="letter-text" data-typewriter>We started as two strangers who didn't know they were about to become each other's home. I remember how ordinary that beginning felt — just talking, just laughing, just two people slowly choosing to know each other a little more each day. Neither of us said it out loud, but somewhere in those early conversations, something quiet was already becoming permanent.</p>
+      <p class="sign">— [Humayun]</p>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 2 — GETTING CLOSER ============ -->
+  <section class="chapter" data-mood="night" data-const="1">
+    <div class="eyebrow reveal">Chapter Two</div>
+    <h2 class="chapter-title reveal">Getting Closer</h2>
+    <p class="chapter-sub reveal">the slow, certain pull toward each other</p>
+
+    <div class="photo-grid reveal">
+      <div class="photo-frame glass"><div class="photo-placeholder"><span class="ic">💗</span>A cute memory</div><img src="1.jpeg" alt=""></div>
+      <div class="photo-frame glass"><div class="photo-placeholder"><span class="ic">💗</span>A cute memory</div><img src="2.jpeg" alt=""></div>
+      <div class="photo-frame glass"><div class="photo-placeholder"><span class="ic">💗</span>A cute memory</div><img src="3.jpeg" alt=""></div>
+    </div>
+
+    <div class="letter glass reveal">
+      <p class="letter-text" data-typewriter>Somewhere between the long calls and the small jokes only we understood, "getting to know you" turned into "I don't want to stop talking to you." You became the person I looked forward to all day. I fell for you slowly, and then all at once — and I have never once regretted a single step of that fall.</p>
+      <p class="sign">— [Humayun]</p>
+    </div>
+
+    <p style="opacity:0.55; font-size:13px; text-align:center; margin-top:10px;"></p>
+  </section>
+
+  <!-- ============ CHAPTER 3 — THE HARD DAYS ============ -->
+  <section class="chapter" data-mood="rain" data-const="2">
+    <div class="eyebrow reveal">Chapter Three</div>
+    <h2 class="chapter-title reveal">The Hard Days</h2>
+    <p class="chapter-sub reveal">where it rained, and we stayed anyway</p>
+
+    <div class="letter glass reveal">
+      <p class="letter-text" data-typewriter>Our story was never perfect, and I don't want this website to pretend it was. We argued. We misunderstood each other. There were nights that ended in tears and silences that lasted too long. I carried anger I didn't know how to put down, and fears that made me push away the one person who never deserved to be pushed. We even broke apart, more than once.
+
+But every single time, we found our way back to each other — not because it was easy, but because what we had was worth more than our pride. You stayed through the hardest version of me. You didn't just love the parts of me that were easy to love; you stayed for the broken parts too, and slowly, gently, you helped me believe they weren't unlovable at all.</p>
+      <p class="sign">— [Humayun]</p>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 4 — YOU CHANGED ME ============ -->
+  <section class="chapter" data-mood="sunrise" data-const="3">
+    <div class="eyebrow reveal" style="color:var(--midnight);">Chapter Four</div>
+    <h2 class="chapter-title reveal" style="color:var(--midnight); text-shadow:none;">You Changed Me</h2>
+    <p class="chapter-sub reveal" style="color:var(--midnight); opacity:0.7;">how the sun started rising in me again</p>
+
+    <div class="photo-grid reveal">
+      <div class="photo-frame glass"><div class="photo-placeholder"><span class="ic">🌅</span>A happier moment</div><img src="3.jpeg" alt=""></div>
+      <div class="photo-frame glass"><div class="photo-placeholder"><span class="ic">🌅</span>A happier moment</div><img src="4.jpeg" alt=""></div>
+    </div>
+
+    <div class="letter glass reveal" style="color:var(--midnight);">
+      <p class="letter-text" style="color:var(--midnight);" data-typewriter>When you found me, I wasn't the man I wanted to be. I was carrying old wounds, anger I didn't understand, panic that came from nowhere, and habits that were quietly hurting me — including things I needed to leave behind entirely. You never gave up on me while I found the strength to let them go. Every day I got a little better, because I wanted to be someone who deserved you.
+
+You healed parts of me I thought were permanent. The child in me who missed certain kinds of love finally felt safe, chosen, important. Watching you slowly feel safe enough to ask for flowers, for little gifts, for a handwritten letter — watching your own inner child learn to smile freely — is one of the most beautiful things I have ever witnessed. Your happiness became mine. You didn't just love me. You helped me become a better man.</p>
+      <p class="sign" style="color:#7a4b2e;">— [Humayun]</p>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 5 — OUR ADVENTURES ============ -->
+  <section class="chapter" data-mood="night" data-const="4">
+    <div class="eyebrow reveal">Chapter Five</div>
+    <h2 class="chapter-title reveal">Our Adventures</h2>
+    <p class="chapter-sub reveal">trips, dates, selfies, and everything in between</p>
+
+    <div class="photo-grid reveal">
+      <div class="photo-frame glass"><div class="photo-placeholder"><span class="ic">🚗</span>On the road</div><img src="7.jpeg" alt=""></div>
+      <div class="photo-frame glass"><div class="photo-placeholder"><span class="ic">🛶</span>The lake, Kashmir</div><img src="13.jpeg" alt=""></div>
+      <div class="photo-frame glass"><div class="photo-placeholder"><span class="ic">🤝</span>Holding on</div><img src="9.jpeg" alt=""></div>
+      <div class="photo-frame glass"><div class="photo-placeholder"><span class="ic">😂</span>A funny moment</div><img src="10.jpeg" alt=""></div>
+      <div class="photo-frame glass"><div class="photo-placeholder"><span class="ic">🍽️</span>Dinner together</div><img src="11.jpeg" alt=""></div>
+      <div class="photo-frame glass"><div class="photo-placeholder"><span class="ic">🌿</span>Drifting the lilies</div><img src="12.jpeg" alt=""></div>
+    </div>
+
+    <div class="letter glass reveal">
+      <p class="letter-text" data-typewriter>Some of my favorite memories aren't the big, planned ones — they're the small, ridiculous ones. The wrong turns that became the best part of the trip. The laugh you can't stop once it starts. I want this chapter to keep growing every time we make a new memory, because with you, every ordinary day quietly turns into an adventure.</p>
+      <p class="sign">— [Humayun]</p>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 6 — TODAY ============ -->
+  <section class="chapter" data-mood="night" data-const="5">
+    <div class="eyebrow reveal">Chapter Six</div>
+    <h2 class="chapter-title reveal">Today</h2>
+    <p class="chapter-sub reveal">where our story currently stands</p>
+
+    <div class="photo-grid reveal">
+      <div class="photo-frame glass"><div class="photo-placeholder"><span class="ic">📷</span>Latest photo</div><img src="13.jpeg" alt=""></div>
+      <div class="photo-frame glass"><div class="photo-placeholder"><span class="ic">📷</span>Add your next one here<br><small>/ch6-2.jpeg</small></div><img src="14.jpeg" alt="" onerror="this.style.display='none'"></div>
+    </div>
+
+    <div class="letter glass reveal">
+      <p class="letter-text" data-typewriter>Lately, things have just been... calm. We haven't fought in a while, and it's a strange, good kind of quiet — the kind that used to feel unfamiliar to me. I feel steadier now. You feel safer, more comfortable, more like yourself around me, and I feel reassured too — like we're finally standing on solid ground instead of waiting for the next storm.
+I don't take this peace for granted. I know what it took to get here — for both of us. Right now, there's nothing dramatic to report, no big moment to mark. Just two people who stopped bracing for impact and started actually resting in each other. That might be the most important chapter yet.</p>
+      <p class="sign">— Humayun</p>
+    </div>
+  </section>
+
+  <!-- ============ FUTURE / DREAMS ============ -->
+  <section class="chapter" data-mood="night">
+    <div class="eyebrow reveal">Chapter Seven</div>
+    <h2 class="chapter-title reveal">What I Still Dream About</h2>
+    <p class="chapter-sub reveal">the chapters we haven't written yet</p>
+
+    <div class="letter glass reveal">
+      <p class="letter-text" data-typewriter>I think about growing old with you — really old, the kind where we forget what we were arguing about halfway through. I think about building a home that feels like both of us. Maybe a family, someday. More trips, more terrible selfies, more anniversaries, more ordinary Tuesdays that somehow still feel special because you're in them.
+
+I don't know everything the future holds, but I know this: I want to keep choosing you, on the easy days and the hard ones, for as long as I get to.</p>
+      <p class="sign">— [Humayun]</p>
+    </div>
+  </section>
+
+  <!-- ============ REASONS I LOVE YOU ============ -->
+  <section class="chapter">
+    <div class="eyebrow reveal">an ongoing list</div>
+    <h2 class="chapter-title reveal">Reasons I Love You</h2>
+    <p class="chapter-sub reveal">roz update karta rahunga</p>
+    <div class="reasons-grid" id="reasonsGrid"></div>
+  </section>
+
+  <!-- ============ ANNIVERSARY COUNTDOWN ============ -->
+  <section class="chapter" style="text-align:center;">
+    <div class="eyebrow reveal" style="justify-content:center;">counting down</div>
+    <h2 class="chapter-title reveal">Until Our  Anniversary</h2>
+    <div class="countdown" id="countdown"></div>
+    <p style="opacity:0.5; font-size:12px; margin-top:16px;"></p>
+  </section>
+
+  <!-- ============ SECRET SECTION ============ -->
+  <section class="chapter">
+    <div class="eyebrow reveal">🧸 for her eyes only</div>
+    <h2 class="chapter-title reveal">A Secret Place</h2>
+    <div class="secret-gate glass reveal">
+      <p style="opacity:0.75;">This part is just for you. Type the word only you'd know.</p>
+      <br>
+      <input type="text" id="secretInput" placeholder="secret word...">
+      <br>
+      <button class="btn" id="secretBtn">Unlock</button>
+      <p id="secretError" style="color:var(--soft-pink); font-size:12px; margin-top:10px; opacity:0;">that's not quite it — try again 💗</p>
+    </div>
+
+    <div class="secret-content" id="secretContent">
+      <div class="letter glass reveal in" style="margin-top:24px;">
+        <div class="quill">🔒</div>
+        <p class="letter-text">For the days you feel lonely, anxious, or far from me: you are never actually alone. Whatever you're feeling is safe here with me — the good, the messy, all of it. I'm not going anywhere.</p>
+        <p class="sign">— [Humayun]</p>
+      </div>
+      <div class="letter glass reveal in">
+        <div class="quill">🔒</div>
+        <p class="letter-text">[Missing me means you're feeling something real, and I never want you to be ashamed of that. I miss you too, probably more than I say out loud. Distance doesn't change anything about how this works — I'm still yours, from wherever I am.</p>
+        <p class="sign">— [Humayun]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CHAPTER — FOREVER ============ -->
+  <section class="chapter" data-mood="forever" style="text-align:center; min-height:90vh; display:flex; flex-direction:column; justify-content:center;">
+    <div class="eyebrow reveal" style="justify-content:center;">Final Chapter</div>
+    <h2 class="chapter-title reveal" style="font-size:clamp(3rem,8vw,5.5rem);">Forever</h2>
+
+    <div class="photo-frame glass glow reveal" style="max-width:420px; margin:30px auto;">
+      <div class="photo-placeholder"><span class="ic">💫</span>Our favorite picture together</div>
+      <img src="/forever.jpeg" alt="Our favorite photo together">
+    </div>
+
+    <div class="letter glass reveal" style="max-width:640px; margin:20px auto 0;">
+      <p class="letter-text" data-typewriter>This isn't an ending. It's the beginning of forever — and forever is still being written, one small day at a time. Zaiiny, whenever you open this, however many years from now, I need you to know: you have always been, and will always be, deeply loved.</p>
+      <p class="sign">— [Humayun]</p>
+    </div>
+  </section>
+
+  <footer>
+    <span class="script">Our Universe</span>
+    this page is a living diary — it keeps growing as long as we do 🌙
+  </footer>
+
+</main>
 
 <script>
-  // sparkles
-  const sparkleHost = document.getElementById('sparkles');
-  for(let i=0;i<20;i++){
-    const s = document.createElement('div');
-    s.className='sparkle';
-    s.style.left = Math.random()*100+'vw';
-    s.style.top = Math.random()*60+'vh';
-    s.style.animationDelay = (Math.random()*3)+'s';
-    s.style.animationDuration = (2+Math.random()*3)+'s';
-    sparkleHost.appendChild(s);
-  }
+/* ============================================================
+   CONFIG START — edit the values below to make this yours
+   ============================================================ */
+const CONFIG = {
+  // set your real anniversary date (YYYY-MM-DDTHH:mm:ss)
+  anniversaryDate: "2026-08-10",
 
-  // falling hearts, continuous
-  const heartHost = document.getElementById('hearts');
-  const heartColors = ['#e0617f','#ff8fac','#e8a94f','#b23e5c'];
-  function spawnHeart(){
-    const h = document.createElement('div');
-    h.className = 'falling-heart';
-    h.textContent = '❤';
-    h.style.left = Math.random()*100+'vw';
-    h.style.fontSize = (14+Math.random()*18)+'px';
-    h.style.color = heartColors[Math.floor(Math.random()*heartColors.length)];
-    h.style.setProperty('--drift', (Math.random()*60-30)+'px');
-    const dur = 7+Math.random()*7;
-    h.style.animationDuration = dur+'s';
-    heartHost.appendChild(h);
-    setTimeout(()=>h.remove(), dur*1000 + 200);
-  }
-  for(let i=0;i<10;i++){ setTimeout(spawnHeart, i*400); }
-  setInterval(spawnHeart, 900);
+  // the password for the secret 🧸 section (case-insensitive)
+  secretWord: "ourforever",
 
-  function heartBurst(x,y,count){
-    for(let i=0;i<count;i++){
-      const h = document.createElement('div');
-      h.textContent = '❤';
-      h.style.position='fixed';
-      h.style.left = x+'px'; h.style.top = y+'px';
-      h.style.fontSize = (14+Math.random()*14)+'px';
-      h.style.color = heartColors[Math.floor(Math.random()*heartColors.length)];
-      h.style.pointerEvents='none';
-      h.style.zIndex = 70;
-      const ang = Math.random()*Math.PI*2;
-      const dist = 60 + Math.random()*130;
-      h.style.transition = 'transform 1.1s ease-out, opacity 1.1s ease-out';
-      h.style.transform = 'translate(0,0) scale(0.6)';
-      h.style.opacity = '1';
-      document.body.appendChild(h);
-      requestAnimationFrame(()=>{
-        h.style.transform = `translate(${Math.cos(ang)*dist}px, ${Math.sin(ang)*dist}px) scale(1.2)`;
-        h.style.opacity = '0';
-      });
-      setTimeout(()=>h.remove(), 1200);
+  // random letters shown in the "open a random letter" button
+  randomLetters: [
+    "I don't need a reason to write to you today. I just wanted you to know I was thinking about you, mid-sentence, in the middle of an ordinary moment, the way I always do.",
+    "Thank you for loving me on the days I made it hard to. Thank you for staying when leaving would have been easier.",
+    "You turned my worst habits into things I no longer needed, simply by being someone worth becoming better for.",
+    "If I could go back, I'd choose you again, every single time — even the hard days, especially the hard days.",
+    "Somewhere between all our ordinary days, you quietly became my favorite place to be.",
+  ],
+
+  // reasons I love you — add as many as you want, they'll auto-number
+  reasons: [
+    "You stayed when it would've been easier to leave.",
+    "You made my inner child feel safe enough to ask for flowers.",
+    "You never gave up on me, even during my worst moments.",
+    "You cry when I hurt, because my pain became yours too.",
+    "You taught me what patience actually looks like.",
+    "The way your face lights up over the smallest gifts.",
+    "You loved my broken parts, not just my good ones.",
+    "You make ordinary Tuesdays feel like something worth remembering.",
+    "You helped me become the man I always wanted to be.",
+    "You chose me, over and over, even after the hard days.",
+  ],
+
+  // hidden memories revealed when a memory-star is clicked
+  hiddenMemories: [
+    "The first time you laughed so hard you couldn't breathe, and I decided I wanted to hear that sound forever.",
+    "That 2am conversation where we said things we'd never told anyone else.",
+    "The first time you cried in front of me, and I realized I never wanted you to feel alone in that again.",
+    "The little gift you didn't expect — and the way your whole face changed.",
+    "The night we almost lost each other, and chose not to.",
+  ],
+};
+/* ============================================================
+   CONFIG END
+   ============================================================ */
+
+// ---- Intro ----
+const intro = document.getElementById('intro');
+document.getElementById('enterBtn').addEventListener('click', () => {
+  intro.classList.add('hidden');
+  const music = document.getElementById('bgMusic');
+  music.play().then(() => {
+    document.getElementById('musicToggle').classList.add('playing');
+    document.getElementById('musicToggle').textContent = '♫';
+  }).catch(()=>{});
+});
+
+// ---- Music toggle ----
+const musicBtn = document.getElementById('musicToggle');
+const music = document.getElementById('bgMusic');
+musicBtn.addEventListener('click', () => {
+  if (music.paused) {
+    music.play().catch(()=>{});
+    musicBtn.classList.add('playing');
+    musicBtn.textContent = '♫';
+  } else {
+    music.pause();
+    musicBtn.classList.remove('playing');
+    musicBtn.textContent = '♪';
+  }
+});
+
+// ---- Generate stars ----
+const starsWrap = document.getElementById('stars');
+for (let i = 0; i < 140; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  const size = Math.random() * 2 + 1;
+  s.style.width = size + 'px';
+  s.style.height = size + 'px';
+  s.style.top = Math.random() * 100 + '%';
+  s.style.left = Math.random() * 100 + '%';
+  s.style.animationDelay = (Math.random() * 4) + 's';
+  s.style.animationDuration = (3 + Math.random() * 3) + 's';
+  starsWrap.appendChild(s);
+}
+
+// ---- Occasional shooting star ----
+function spawnShootingStar(){
+  const s = document.createElement('div');
+  s.className = 'shooting-star';
+  s.style.left = (20 + Math.random() * 60) + '%';
+  s.style.top = (Math.random() * 20) + '%';
+  document.getElementById('sky').appendChild(s);
+  setTimeout(() => s.remove(), 1700);
+}
+setInterval(spawnShootingStar, 7000);
+
+// ---- Rain drops (created once, shown via opacity) ----
+const rainLayer = document.getElementById('rainLayer');
+for (let i = 0; i < 60; i++) {
+  const d = document.createElement('div');
+  d.className = 'raindrop';
+  d.style.left = Math.random() * 100 + '%';
+  d.style.animationDuration = (0.6 + Math.random() * 0.6) + 's';
+  d.style.animationDelay = (Math.random() * 2) + 's';
+  rainLayer.appendChild(d);
+}
+
+// ---- Memory stars scattered across the sky ----
+const skyEl = document.getElementById('sky');
+const memoryPositions = [
+  {top:'20%', left:'12%'}, {top:'55%', left:'82%'}, {top:'35%', left:'45%'},
+  {top:'70%', left:'20%'}, {top:'15%', left:'70%'},
+];
+CONFIG.hiddenMemories.forEach((text, i) => {
+  const pos = memoryPositions[i % memoryPositions.length];
+  const btn = document.createElement('button');
+  btn.className = 'memory-star';
+  btn.style.top = pos.top;
+  btn.style.left = pos.left;
+  btn.title = 'click me';
+  btn.addEventListener('click', () => openModal('memoryModal', text));
+  skyEl.appendChild(btn);
+});
+
+// ---- Modals ----
+function openModal(id, text){
+  if (text !== undefined) {
+    const target = id === 'memoryModal' ? 'memoryText' : 'randomLetterText';
+    document.getElementById(target).textContent = text;
+  }
+  document.getElementById(id).classList.add('show');
+}
+function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+document.getElementById('closeMemoryModal').addEventListener('click', () => closeModal('memoryModal'));
+document.getElementById('closeLetterModal').addEventListener('click', () => closeModal('letterModal'));
+document.querySelectorAll('.modal-bg').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('show'); });
+});
+
+document.getElementById('randomLetterBtn').addEventListener('click', () => {
+  const letters = CONFIG.randomLetters;
+  const pick = letters[Math.floor(Math.random() * letters.length)];
+  openModal('letterModal', pick);
+});
+
+// ---- Reasons I love you ----
+const reasonsGrid = document.getElementById('reasonsGrid');
+CONFIG.reasons.forEach((reason, i) => {
+  const card = document.createElement('div');
+  card.className = 'reason-card glass reveal';
+  card.innerHTML = `<span class="reason-num">REASON ${String(i+1).padStart(2,'0')}</span>${reason}`;
+  reasonsGrid.appendChild(card);
+});
+
+// ---- Countdown ----
+function updateCountdown(){
+  const target = new Date(CONFIG.anniversaryDate).getTime();
+  const now = Date.now();
+  let diff = target - now;
+  const box = document.getElementById('countdown');
+  if (diff < 0) {
+    box.innerHTML = `<div class="cd-box glass"><div class="cd-num">💍</div><div class="cd-label">Happy Anniversary</div></div>`;
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  box.innerHTML = `
+    <div class="cd-box glass"><div class="cd-num">${d}</div><div class="cd-label">Days</div></div>
+    <div class="cd-box glass"><div class="cd-num">${h}</div><div class="cd-label">Hours</div></div>
+    <div class="cd-box glass"><div class="cd-num">${m}</div><div class="cd-label">Minutes</div></div>
+    <div class="cd-box glass"><div class="cd-num">${s}</div><div class="cd-label">Seconds</div></div>`;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ---- Secret section ----
+document.getElementById('secretBtn').addEventListener('click', () => {
+  const val = document.getElementById('secretInput').value.trim().toLowerCase();
+  if (val === CONFIG.secretWord.toLowerCase()) {
+    document.getElementById('secretContent').classList.add('unlocked');
+    document.getElementById('secretError').style.opacity = 0;
+  } else {
+    document.getElementById('secretError').style.opacity = 1;
+  }
+});
+
+// ---- Scroll reveal ----
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in'); });
+}, { threshold: 0.15 });
+revealEls.forEach(el => revealObserver.observe(el));
+
+// ---- Typewriter effect for letters ----
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('[data-typewriter]').forEach(p => {
+  const fullText = p.textContent;
+  p.dataset.full = fullText;
+  if (!reduceMotion) p.textContent = '';
+});
+const typeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.typed) {
+      entry.target.dataset.typed = 'true';
+      if (reduceMotion) return;
+      const full = entry.target.dataset.full;
+      let i = 0;
+      const speed = Math.max(8, Math.min(22, 4000 / full.length));
+      const interval = setInterval(() => {
+        entry.target.textContent = full.slice(0, i);
+        i++;
+        if (i > full.length) clearInterval(interval);
+      }, speed);
     }
-  }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('[data-typewriter]').forEach(el => typeObserver.observe(el));
 
-  // ---- tiny generated music-box melody (original, no file needed) ----
-  let audioCtx = null, masterGain = null, melodyTimer = null, musicPlaying = false;
-  function ensureAudio(){
-    if(!audioCtx){
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      masterGain = audioCtx.createGain();
-      masterGain.gain.value = 0.15;
-      const warmth = audioCtx.createBiquadFilter();
-      warmth.type = 'lowpass'; warmth.frequency.value = 2600;
-      masterGain.connect(warmth); warmth.connect(audioCtx.destination);
+// ---- Mood-driven background + constellation progress ----
+const chapters = document.querySelectorAll('.chapter');
+const constWrap = document.getElementById('constellation');
+chapters.forEach((ch, i) => {
+  if (ch.dataset.const === undefined) return;
+  const node = document.createElement('div');
+  node.className = 'const-node';
+  node.innerHTML = `<div class="const-dot" data-idx="${i}"></div>${i < chapters.length-1 ? '<div class="const-line" data-idx="'+i+'"></div>' : ''}`;
+  constWrap.appendChild(node);
+});
+
+const moodObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const mood = entry.target.dataset.mood || 'night';
+      const sky = document.getElementById('sky');
+      sky.className = 'sky' + (mood !== 'night' ? ' mood-' + mood : '');
+      const idx = entry.target.dataset.const;
+      if (idx !== undefined) {
+        document.querySelectorAll('.const-dot').forEach(d => {
+          d.classList.toggle('active', Number(d.dataset.idx) <= Number(idx));
+        });
+        document.querySelectorAll('.const-line').forEach(l => {
+          l.classList.toggle('active', Number(l.dataset.idx) < Number(idx));
+        });
+      }
     }
-    if(audioCtx.state === 'suspended') audioCtx.resume();
-  }
-  const NOTE = {C5:523.25,D5:587.33,E5:659.25,F5:698.46,G5:783.99,A5:880.00,B5:987.77,C6:1046.50,D6:1174.66,E6:1318.51};
-  const melody = [
-    [NOTE.E5,0.35],[NOTE.G5,0.35],[NOTE.C6,0.5],[NOTE.B5,0.35],[NOTE.G5,0.35],
-    [NOTE.A5,0.35],[NOTE.C6,0.35],[NOTE.E6,0.7],
-    [0,0.25],
-    [NOTE.D6,0.35],[NOTE.B5,0.35],[NOTE.G5,0.5],[NOTE.A5,0.35],[NOTE.F5,0.35],
-    [NOTE.G5,0.35],[NOTE.E5,0.35],[NOTE.C5,0.8],
-    [0,0.5]
-  ];
-  function pluckNote(freq, dur, startTime){
-    if(!freq) return;
-    const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain();
-    osc.type = 'triangle'; osc.frequency.value = freq;
-    const overtone = audioCtx.createOscillator(); overtone.type = 'sine'; overtone.frequency.value = freq*2;
-    const overtoneGain = audioCtx.createGain(); overtoneGain.gain.value = 0.15;
-    gain.gain.setValueAtTime(0, startTime);
-    gain.gain.linearRampToValueAtTime(0.5, startTime+0.015);
-    gain.gain.exponentialRampToValueAtTime(0.001, startTime+dur);
-    osc.connect(gain); overtone.connect(overtoneGain); overtoneGain.connect(gain); gain.connect(masterGain);
-    osc.start(startTime); osc.stop(startTime+dur+0.05);
-    overtone.start(startTime); overtone.stop(startTime+dur+0.05);
-  }
-  function scheduleLoop(){
-    ensureAudio();
-    let t = audioCtx.currentTime + 0.1;
-    melody.forEach(([freq,dur])=>{ pluckNote(freq, dur*0.92, t); t += dur; });
-    const totalDur = melody.reduce((s,[,d])=>s+d,0);
-    melodyTimer = setTimeout(scheduleLoop, totalDur*1000);
-  }
-  function playMusic(){
-    ensureAudio();
-    if(musicPlaying) return;
-    musicPlaying = true; scheduleLoop();
-    musicLabel.textContent = 'music playing';
-  }
-  function stopMusic(){
-    musicPlaying = false; clearTimeout(melodyTimer);
-    musicLabel.textContent = 'play music';
-  }
-  const musicToggle = document.getElementById('musicToggle');
-  const musicLabel = document.getElementById('musicLabel');
-  musicToggle.addEventListener('click', ()=>{ if(musicPlaying) stopMusic(); else playMusic(); });
-
-  const pages = [
-    {
-      html: `
-        <div class="eyebrow">page one</div>
-        <h1>My beautiful Zaynii,</h1>
-        <p>You know what my favorite thing is? Watching you sleep.</p>
-        <p>You always look so unbelievably cute when you're sleeping. I don't know how you do it, but every single time I look at you, I just smile without even realizing it. Your face becomes so peaceful, so innocent, so soft. It makes me want to protect you from every little thing that could ever hurt you. I could honestly spend hours just looking at you and thinking how lucky I am.</p>
-        <p>Usually we stay together until we say goodnight, exchange our kisses, and fall asleep together. It's one of my favorite parts of the day because it feels like no matter how busy life gets, we always end it with each other.</p>
-        <p>Today was a little different because I was with Anum didi and Ayman, and you fell asleep while we were still talking. I hope you didn't feel bad that I wasn't sleeping beside you like we normally do. I'm really sorry if it made you feel even a little lonely.</p>
-        <p>But do you know something that made me smile?</p>
-        <p>Even while you were sleeping, you were still the center of everything. We kept talking about you. I was telling them how sweet you are, how respectful you are, how kind your heart is, how caring and loving you are. I couldn't stop praising you because that's genuinely how I see you. I wasn't saying those things just because you're my girlfriend. I was saying them because they're true.</p>
-        <p>I told them how you helped me become a better person. You believed in me when I didn't even believe in myself. You helped me leave drugs behind and gave me a reason to choose a better life. You'll probably never understand how big that is for me. You didn't just change my habits. You changed my future.</p>
-        <p>While you were sleeping, I kept looking at your face and giving you little kisses. You looked so adorable that my heart couldn't handle it. I just wanted to hold you close and tell you how much I love you.</p>
-        <p>Even my sisters love you so much. They respect you because of the kind of person you are. They see what I see. They know how genuine, decent, and beautiful your heart is. That makes me so happy because the people I love can also see how special you are.</p>
-        <p>I hope you never doubt your place in my life.</p>
-        <p>You are not just important to me. You are my peace. You are my comfort. You are my home.</p>
-      `,
-      btn: 'keep reading, love'
-    },
-    {
-      html: `
-        <div class="eyebrow">page two</div>
-        <p>I talk about you everywhere because I'm proud to love you. Every time someone asks about my happiness, somehow your name comes into the conversation. I love telling people about the amazing girl who came into my life and made it brighter.</p>
-        <p>Your smile is my favorite view in the whole world, and don't even get me started on your little dimple. Every single time it appears, my heart melts. Your eyes are so beautiful that sometimes I forget what I was thinking because I get lost looking at them.</p>
-        <p>And your hugs...<br>Your hugs are magic.</p>
-        <p>The moment you hug me, every stress disappears. It feels like the whole world becomes quiet for a little while. In your arms, I feel safe. I feel loved. I feel like I can fight every problem life throws at me because I know I have you beside me. You make me believe I can become the man I've always wanted to be.</p>
-        <p>Thank you for being patient with me. Thank you for believing in me. Thank you for loving me. Thank you for helping me grow.</p>
-        <p>I promise I'll always try to become a better man, not just for myself but for us. I want to support your dreams the way you've supported mine. I want to cheer for you every step of your life, remind you how beautiful you are when you forget, make you laugh when you're sad, and love you in ways that make you feel safe every single day.</p>
-        <p>You're one of the greatest blessings Allah has ever given me. Every day I thank Him for bringing you into my life.</p>
-        <p>No matter where I am, who I'm with, or what I'm doing, my heart always finds its way back to you.</p>
-        <p>You are my favorite person. My happiest place. My biggest blessing. My prettiest girl. My cutest sleeping baby.</p>
-      `,
-      btn: 'one more page for you'
-    },
-    {
-      html: `
-        <div class="eyebrow">last page</div>
-        <p>Sleep peacefully, my love. I'll still be here tomorrow, loving you a little more than I did today, just like I do every single day.</p>
-        <div class="signature">Forever yours. ❤️</div>
-      `,
-      btn: null
-    }
-  ];
-
-  let pageIndex = 0;
-  const packet = document.getElementById('packet');
-  const scrollWrap = document.getElementById('scrollWrap');
-  const scrollOuter = document.getElementById('scrollOuter');
-  const scrollInner = document.getElementById('scrollInner');
-
-  function renderPage(i, opts){
-    const data = pages[i];
-    let html = data.html;
-    if(data.btn){
-      html += `<button class="next-btn" onclick="nextPage(event)">${data.btn}</button>`;
-    }
-    html += `<div class="page-counter">${i+1} / ${pages.length}</div>`;
-    scrollInner.innerHTML = html;
-    scrollOuter.scrollTop = 0;
-
-    requestAnimationFrame(()=>{
-      const target = Math.min(scrollInner.scrollHeight, window.innerHeight * 0.72);
-      scrollOuter.classList.remove('done','scrollable');
-      scrollOuter.style.height = target + 'px';
-      scrollOuter.scrollTop = 0;
-      scrollOuter.addEventListener('transitionend', function onDone(e){
-        if(e.propertyName !== 'height') return;
-        scrollOuter.classList.add('done');
-        scrollOuter.scrollTop = 0;
-        if(scrollInner.scrollHeight > target + 2){
-          scrollOuter.classList.add('scrollable');
-        }
-        scrollOuter.removeEventListener('transitionend', onDone);
-      });
-    });
-  }
-
-  function openLetter(){
-    if(packet.classList.contains('opening')) return;
-    packet.classList.add('opening');
-    ensureAudio();
-    playMusic();
-    setTimeout(()=>{
-      packet.style.display = 'none';
-      scrollWrap.classList.add('visible');
-      renderPage(pageIndex);
-    }, 350);
-  }
-
-  function nextPage(e){
-    if(e && e.clientX){ heartBurst(e.clientX, e.clientY, 14); }
-    scrollOuter.classList.remove('done','scrollable');
-    scrollOuter.style.height = '0px';
-    scrollOuter.addEventListener('transitionend', function onClosed(ev){
-      if(ev.propertyName !== 'height') return;
-      scrollOuter.removeEventListener('transitionend', onClosed);
-      pageIndex++;
-      renderPage(pageIndex);
-    });
-  }
+  });
+}, { threshold: 0.5 });
+chapters.forEach(ch => moodObserver.observe(ch));
 </script>
-
 </body>
 </html>
